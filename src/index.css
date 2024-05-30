@@ -1,4 +1,4 @@
-@tailwind base;
+  @tailwind base;
   @tailwind components;
   @tailwind utilities;
 
@@ -66,11 +66,11 @@
     }
   }
 
-  @layer base {
+  /* @layer base {
     * {
-      @apply yesborder-border;
+      @apply border-border;
     }
     body {
-      @apply yesbg-background yestext-foreground;
+      @apply bg-background text-foreground;
     }
-  }
+  } */
