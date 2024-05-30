@@ -45,28 +45,27 @@ export default function PhotoVerification() {
       userInfo: userInfo,
     };
     localStorage.setItem("userData", JSON.stringify(userData));
-    navigate('/test')
+    navigate("/test");
   };
 
   return (
     <div className="flex items-center justify-center bg-gray-100 p-5">
       <div className="w-full max-w-6xl bg-white rounded-lg shadow-md flex">
         <div className="w-4/5 flex flex-col items-center justify-center p-8 relative border-r-2 border-blue-900">
-          <div className="w-full h-64 border-2 border-dashed border-gray-300 flex items-center justify-center mb-4">
-            {image == null ? (
-              <Webcam
-                audio={false}
-                ref={webcamRef}
-                screenshotFormat="image/jpeg"
-              />
-            ) : (
-              <img src={image} alt="User Image" />
-            )}
-          </div>
+          {image == null ? (
+            <Webcam
+              audio={false}
+              ref={webcamRef}
+              screenshotFormat="image/jpeg"
+            />
+          ) : (
+            <img src={image} alt="User Image" />
+          )}
+
           {image == null && (
             <button
               type="button"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-4"
               onClick={capture}
             >
               Capture
