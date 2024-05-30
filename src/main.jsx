@@ -1,27 +1,37 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
 import "./index.css";
-import '../style.css'
+import "../style.css";
 
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Login from "./pages/login.jsx";
-// import Home from "./pages/Home";
-// import Contact from "./pages/Contact";
+import LoginForm from "./components/loginForm/Login";
+import PhotoVarification from "./pages/photo.verification";
+import CodingTest from "./pages/coding.test";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <LoginForm />,
   },
   {
     path: "/login/",
     element: <Login />,
   },
+  {
+    path: "/verification/",
+    element: <PhotoVarification />,
+  },
+  {
+    path: "/test/",
+    element: <CodingTest />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <div className=" w-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center min-h-screen">
+      <RouterProvider router={router} />
+    </div>
   </React.StrictMode>
 );
