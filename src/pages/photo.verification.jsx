@@ -1,6 +1,5 @@
 import React, { useRef, useCallback, useState, useEffect } from "react";
 import Webcam from "react-webcam";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function PhotoVerification() {
@@ -21,6 +20,19 @@ export default function PhotoVerification() {
     );
     setIsFormValid(allFieldsFilled && image !== null);
   }, [userInfo, image]);
+
+  useEffect(() => {
+    const preventClose = (event) => {
+      event.preventDefault();
+      event.returnValue = '';
+    };
+
+    window.addEventListener('beforeunload', preventClose);
+
+    return () => {
+      window.removeEventListener('beforeunload', preventClose);
+    };
+  }, []);
 
   const capture = useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot();
@@ -57,6 +69,17 @@ export default function PhotoVerification() {
               audio={false}
               ref={webcamRef}
               screenshotFormat="image/jpeg"
+              onUserMedia={() => {
+                const videoElement = webcamRef.current.video;
+                if (videoElement) {
+                  const preventPause = () => {
+                    if (videoElement.paused) {
+                      videoElement.play();
+                    }
+                  };
+                  videoElement.addEventListener('pause', preventPause);
+                }
+              }}
             />
           ) : (
             <img src={image} alt="User Image" />
