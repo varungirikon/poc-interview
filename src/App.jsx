@@ -6,7 +6,7 @@ import LoginForm from "./components/loginForm/Login";
 
 function App() {
   return (
-    <div className=" w-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center min-h-screen">
+    <div className=" w-full bg-gradient-to-r from-blue-500 to-purple-600 flex  min-h-screen">
    <LoginForm/>
    </div>
   );

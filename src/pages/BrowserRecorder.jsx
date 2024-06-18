@@ -1,22 +1,23 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from "react";
 
 const BrowserRecorder = () => {
   const [recording, setRecording] = useState(false);
-  const [videoURL, setVideoURL] = useState('');
+  const [videoURL, setVideoURL] = useState("");
   const [cameraStatus, setCameraStatus] = useState(false);
   const [cameraStream, setCameraStream] = useState(null);
   const [displayStream, setDisplayStream] = useState(null);
+  const [showNote, setShowNote] = useState(true);
   const mediaRecorderRef = useRef(null);
   const chunks = useRef([]);
   const cameraVideoRef = useRef(null);
 
   const startRecording = async () => {
     try {
-      // Get display media stream
+      setShowNote(false);
       const displayStream = await navigator.mediaDevices.getDisplayMedia({
         video: {
-          cursor: 'always',
-          displaySurface: 'monitor',
+          cursor: "always",
+          displaySurface: "monitor",
         },
         audio: true,
       });
@@ -47,7 +48,7 @@ const BrowserRecorder = () => {
       };
 
       mediaRecorderRef.current.onstop = () => {
-        const blob = new Blob(chunks.current, { type: 'video/webm' });
+        const blob = new Blob(chunks.current, { type: "video/webm" });
         const url = URL.createObjectURL(blob);
         setVideoURL(url);
         chunks.current = [];
@@ -56,7 +57,7 @@ const BrowserRecorder = () => {
       mediaRecorderRef.current.start();
       setRecording(true);
     } catch (err) {
-      console.error('Error accessing display or user media.', err);
+      console.error("Error accessing display or user media.", err);
     }
   };
 
@@ -85,34 +86,72 @@ const BrowserRecorder = () => {
   }, [cameraStream]);
 
   return (
-    <div>
-      <h1>Interview Page</h1>
-      <div>
-        {recording ? (
-          <button onClick={stopRecording}>Stop Interview</button>
-        ) : (
-          <button onClick={startRecording}>Start Interview</button>
-        )}
+    <div className="flex flex-col w-full">
+      <div className="flex w-full justify-between items-center px-4 py-2">
+        <h1 className="text-left text-4xl font-bold text-gray-900 p-2">
+          Interview Page
+        </h1>
+        <div>
+          {recording ? (
+            <button
+              className="bg-red-500 text-white px-4 py-2 rounded"
+              onClick={stopRecording}
+            >
+              Stop Interview
+            </button>
+          ) : (
+            <button
+              className="bg-green-500 text-white px-4 py-2 rounded"
+              onClick={startRecording}
+            >
+              Start Interview
+            </button>
+          )}
+        </div>
       </div>
       {videoURL && (
-        <div>
-          <h2>Recorded Video</h2>
-          <video src={videoURL} controls style={{ width: '60%' }} />
-        </div>
+       <div className="w-full px-[20%] mt-6">
+       <div className="border border-gray-300 rounded-lg p-6">
+         <h3 className="text-2xl font-semibold mb-4 ml-2">Interview Recording</h3>
+         <div className="overflow-hidden rounded-lg">
+           <video src={videoURL} controls className="w-full h-auto" />
+         </div>
+       </div>
+     </div>
+     
       )}
       {cameraStream && cameraStatus && (
         <video
           ref={cameraVideoRef}
           autoPlay
           style={{
-            position: 'fixed',
-            bottom: '10px',
-            right: '10px',
-            width: '200px',
-            height: '150px',
-            border: '2px solid black',
+            position: "fixed",
+            bottom: "10px",
+            right: "10px",
+            width: "200px",
+            height: "150px",
+            border: "2px solid black",
           }}
         />
+      )}
+      {showNote && (
+        <div className="w-full px-[20%] mt-6">
+          <div className="border border-gray-300 rounded-lg p-6">
+            <h3 className="text-2xl font-semibold mb-4 ml-2">Notes</h3>
+            <ul className="list-decimal list-inside text-lg text-left ml-6">
+              <li>Check Camera and Microphone</li>
+              <li>Prepare Your Environment</li>
+              <li>Review Interview Questions</li>
+              <li>Dress Appropriately</li>
+              <li>Test Your Internet Connection</li>
+              <li>Gather Necessary Documents</li>
+              <li>Body Language and Eye Contact</li>
+              <li>Technical Setup</li>
+              <li>Review the Job Description</li>
+              <li>Prepare Questions for the Interviewer</li>
+            </ul>
+          </div>
+        </div>
       )}
     </div>
   );
