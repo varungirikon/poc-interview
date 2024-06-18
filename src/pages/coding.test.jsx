@@ -20,7 +20,6 @@ export default function CodingTest() {
       {userData && (
         <div className="flex justify-between items-center mb-4">
           <div className="flex items-center">
-            {/* User image */}
             <img
               src={userData.image}
               alt="User"
@@ -28,7 +27,7 @@ export default function CodingTest() {
             />
             <div>
               <h1 className="text-xl font-semibold">{userData.name}</h1>
-              <p className="text-gray-600">{userData.name}</p>
+              <p className="text-gray-600">{`${userData.userInfo.name}`}</p>
             </div>
           </div>
           <div>
