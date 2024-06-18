@@ -45,7 +45,7 @@ export default function PhotoVerification() {
       userInfo: userInfo,
     };
     localStorage.setItem("userData", JSON.stringify(userData));
-    navigate("/test");
+    navigate("/interview");
   };
 
   return (

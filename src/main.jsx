@@ -8,11 +8,16 @@ import Login from "./pages/login.jsx";
 import LoginForm from "./components/loginForm/Login";
 import PhotoVarification from "./pages/photo.verification";
 import CodingTest from "./pages/coding.test";
+import BrowserRecorder from "./pages/BrowserRecorder";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <LoginForm />,
+  },
+  {
+    path:"/interview",
+    element: <BrowserRecorder/>
   },
   {
     path: "/login/",
