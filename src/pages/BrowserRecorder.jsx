@@ -86,73 +86,76 @@ const BrowserRecorder = () => {
   }, [cameraStream]);
 
   return (
-    <div className="flex flex-col w-full">
-      <div className="flex w-full justify-between items-center px-4 py-2">
-        <h1 className="text-left text-4xl font-bold text-gray-900 p-2">
-          Interview Page
-        </h1>
-        <div>
-          {recording ? (
-            <button
-              className="bg-red-500 text-white px-4 py-2 rounded"
-              onClick={stopRecording}
-            >
-              Stop Interview
-            </button>
-          ) : (
-            <button
-              className="bg-green-500 text-white px-4 py-2 rounded"
-              onClick={startRecording}
-            >
-              Start Interview
-            </button>
-          )}
-        </div>
-      </div>
-      {videoURL && (
-       <div className="w-full px-[20%] mt-6">
-       <div className="border border-gray-300 rounded-lg p-6">
-         <h3 className="text-2xl font-semibold mb-4 ml-2">Interview Recording</h3>
-         <div className="overflow-hidden rounded-lg">
-           <video src={videoURL} controls className="w-full h-auto" />
-         </div>
-       </div>
-     </div>
-     
-      )}
-      {cameraStream && cameraStatus && (
-        <video
-          ref={cameraVideoRef}
-          autoPlay
-          style={{
-            position: "fixed",
-            bottom: "10px",
-            right: "10px",
-            width: "200px",
-            height: "150px",
-            border: "2px solid black",
-          }}
-        />
-      )}
-      {showNote && (
-        <div className="w-full px-[20%] mt-6">
-          <div className="border border-gray-300 rounded-lg p-6">
-            <h3 className="text-2xl font-semibold mb-4 ml-2">Notes</h3>
-            <ul className="list-decimal list-inside text-lg text-left ml-6">
-              <li>Check Camera and Microphone</li>
-              <li>Prepare Your Environment</li>
-              <li>Review Interview Questions</li>
-              <li>Dress Appropriately</li>
-              <li>Test Your Internet Connection</li>
-              <li>Gather Necessary Documents</li>
-              <li>Body Language and Eye Contact</li>
-              <li>Technical Setup</li>
-              <li>Review the Job Description</li>
-              <li>Prepare Questions for the Interviewer</li>
-            </ul>
+    <div className=" w-full bg-gradient-to-r from-blue-500 to-purple-600 flex min-h-screen">
+      <div className="flex flex-col w-full">
+        <div className="flex w-full justify-between items-center px-4 py-2">
+          <h1 className="text-left text-4xl font-bold text-gray-900 p-2">
+            Interview Page
+          </h1>
+          <div>
+            {recording ? (
+              <button
+                className="bg-red-500 text-white px-4 py-2 rounded"
+                onClick={stopRecording}
+              >
+                Stop Interview
+              </button>
+            ) : (
+              <button
+                className="bg-green-500 text-white px-4 py-2 rounded"
+                onClick={startRecording}
+              >
+                Start Interview
+              </button>
+            )}
           </div>
         </div>
-      )}
+        {videoURL && (
+          <div className="w-full px-[20%] mt-6">
+            <div className="border border-gray-300 rounded-lg p-6">
+              <h3 className="text-2xl font-semibold mb-4 ml-2">
+                Interview Recording
+              </h3>
+              <div className="overflow-hidden rounded-lg">
+                <video src={videoURL} controls className="w-full h-auto" />
+              </div>
+            </div>
+          </div>
+        )}
+        {cameraStream && cameraStatus && (
+          <video
+            ref={cameraVideoRef}
+            autoPlay
+            style={{
+              position: "fixed",
+              bottom: "10px",
+              right: "10px",
+              width: "200px",
+              height: "150px",
+              border: "2px solid black",
+            }}
+          />
+        )}
+        {showNote && (
+          <div className="w-full px-[20%] mt-6">
+            <div className="border border-gray-300 rounded-lg p-6">
+              <h3 className="text-2xl font-semibold mb-4 ml-2">Notes</h3>
+              <ul className="list-decimal list-inside text-lg text-left ml-6">
+                <li>Check Camera and Microphone</li>
+                <li>Prepare Your Environment</li>
+                <li>Review Interview Questions</li>
+                <li>Dress Appropriately</li>
+                <li>Test Your Internet Connection</li>
+                <li>Gather Necessary Documents</li>
+                <li>Body Language and Eye Contact</li>
+                <li>Technical Setup</li>
+                <li>Review the Job Description</li>
+                <li>Prepare Questions for the Interviewer</li>
+              </ul>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

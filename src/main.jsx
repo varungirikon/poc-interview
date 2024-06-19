@@ -34,9 +34,7 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <div className=" w-full bg-gradient-to-r from-blue-500 to-purple-600 flex min-h-screen">
+  <React.StrictMode>    
       <RouterProvider router={router} />
-    </div>
   </React.StrictMode>
 );
